@@ -1,49 +1,49 @@
-#include "win27.h"
+#include "win27.h"//39
 #include <QPushButton>
 #include <QLabel>
 #include <QVBoxLayout>
 Win::Win(QWidget *parent):QWidget(parent)
 {
  auto codec = QStringLiteral("Возведение в квадрат");//локализация, <QTextCodec> устарел, начиная с qt5 не используется. у меня qt6
- setWindowTitle(codec);
- frame = new QFrame(this);
- frame->setFrameShadow(QFrame::Raised);
- frame->setFrameShape(QFrame::Panel);
+ setWindowTitle(codec);// устанавливаем заголовок
+ frame = new QFrame(this);// рамка
+ frame->setFrameShadow(QFrame::Raised);//устанавливаем тень рамки. рамка и содержимое кажутся приподнятыми;
+ frame->setFrameShape(QFrame::Panel);// устанавливаем форму рамки. рисует панель, чтобы содержимое выглядело приподнятым или утопленным
  codec = QStringLiteral("Введите число:");
- inputLabel = new QLabel(codec, this);
- inputEdit = new QLineEdit("",this);
- StrValidator *v=new StrValidator(inputEdit);
- inputEdit->setValidator(v);
+ inputLabel = new QLabel(codec, this);// метка ввода
+ inputEdit = new QLineEdit("",this);// строчный редактор ввода
+ StrValidator *v=new StrValidator(inputEdit);//объект класса компонета проверки ввода, строчный
+ inputEdit->setValidator(v);//устанавливаем валидатор, вводятся корректные данные
  codec = QStringLiteral("Результат:");
- outputLabel = new QLabel(codec, this);
- outputEdit = new QLineEdit("",this);
+ outputLabel = new QLabel(codec, this);// метка вывода
+ outputEdit = new QLineEdit("",this);// строчный редактор вывода
  codec = QStringLiteral("Следующее");
- nextButton = new QPushButton(codec, this);
+ nextButton = new QPushButton(codec, this);// кнопка Следующее
  codec = QStringLiteral("Выход");
- exitButton = new QPushButton(codec, this);
+ exitButton = new QPushButton(codec, this);// кнопка Выход
  // компоновка приложения выполняется согласно рисунку 2.
- QVBoxLayout *vLayout1 = new QVBoxLayout(frame);
- vLayout1->addWidget(inputLabel);
- vLayout1->addWidget(inputEdit);
- vLayout1->addWidget(outputLabel);
- vLayout1->addWidget(outputEdit);
- vLayout1->addStretch();
- QVBoxLayout *vLayout2 = new QVBoxLayout();
- vLayout2->addWidget(nextButton);
- vLayout2->addWidget(exitButton);
- vLayout2->addStretch();
- QHBoxLayout *hLayout = new QHBoxLayout(this);
- hLayout->addWidget(frame);
- hLayout->addLayout(vLayout2);
- begin();
- connect(exitButton,SIGNAL(clicked(bool)),
+ QVBoxLayout *vLayout1 = new QVBoxLayout(frame);//вертикальный компоновщик, связанный с оконным объектом frame
+ vLayout1->addWidget(inputLabel);//добавление метки ввода к компоновщику
+ vLayout1->addWidget(inputEdit);//добавление строчного редактора ввода к компоновщику
+ vLayout1->addWidget(outputLabel);//добавление метки вывода к компоновщику
+ vLayout1->addWidget(outputEdit);//добавление строчного редактора вывода к компоновщику
+ vLayout1->addStretch();//добавление пружины
+ QVBoxLayout *vLayout2 = new QVBoxLayout();//вертикальный компоновщик
+ vLayout2->addWidget(nextButton);//добавление кнопки Следующее к компоновщику
+ vLayout2->addWidget(exitButton);//добавление кнопки Выход к компоновщику
+ vLayout2->addStretch();//добавление пружины
+ QHBoxLayout *hLayout = new QHBoxLayout(this);//горизонтальный компоновщик
+ hLayout->addWidget(frame);//добавление рамки к компоновщику
+ hLayout->addLayout(vLayout2);//добавление компановщика в контейнер другого компановщика
+ begin();// метод начальной настройки интерфейса
+ connect(exitButton,SIGNAL(clicked(bool)),// связь сигнала нажатия кнопки и слота закрытия окна
  this,SLOT(close()));
- connect(nextButton,SIGNAL(clicked(bool)),
+ connect(nextButton,SIGNAL(clicked(bool)),// связь сигнала нажатия кнопки и начальной настройки интерфейса
  this,SLOT(begin()));
- connect(inputEdit,SIGNAL(returnPressed()),
+ connect(inputEdit,SIGNAL(returnPressed()),// связь сигнала нажатия кнопки и метода реализации вычислений
  this,SLOT(calc()));
 }
-void Win::begin()
+void Win::begin()// метод начальной настройки интерфейса
 {
  inputEdit->clear();
  nextButton->setEnabled(false);
@@ -54,7 +54,7 @@ void Win::begin()
  outputEdit->setEnabled(false);
  inputEdit->setFocus();
 }
-void Win::calc()
+void Win::calc()// метод реализации вычислений
 {
  bool Ok=true; float r,a;
  QString str=inputEdit->text();

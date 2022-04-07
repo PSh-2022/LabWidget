@@ -1,5 +1,7 @@
 #ifndef WIN27_H
 #define WIN27_H
+/*Класс окна. Включает рамки, метки, строчные редакторы, кнопки,
+русификатор интерфейса, менеджеры вертикальной и горизонтальной компоновки*/
 #include <QApplication>
 #include <QLineEdit>
 #include <QValidator>
