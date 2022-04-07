@@ -1,7 +1,10 @@
 #include "win27.h"
+#include <QPushButton>
+#include <QLabel>
+#include <QVBoxLayout>
 Win::Win(QWidget *parent):QWidget(parent)
 {
- auto codec = QStringLiteral("Возведение в квадрат");//локализация, привет! <QTextCodec> устарел, начиная с qt5 не используется. у меня qt6
+ auto codec = QStringLiteral("Возведение в квадрат");//локализация, <QTextCodec> устарел, начиная с qt5 не используется. у меня qt6
  setWindowTitle(codec);
  frame = new QFrame(this);
  frame->setFrameShadow(QFrame::Raised);

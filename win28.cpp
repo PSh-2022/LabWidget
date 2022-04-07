@@ -1,0 +1,37 @@
+#include "win28.h"
+#include <QHBoxLayout>
+Win1::Win1(QWidget *parent):QWidget(parent)
+{
+ auto codec = QStringLiteral("Счетчик");//локализация, <QTextCodec> устарел, начиная с qt5 не используется. у меня qt6
+ setWindowTitle(codec);
+ codec = QStringLiteral("Cчет по 1");
+ label1 = new QLabel(codec);
+ codec = QStringLiteral("Cчет по 5");
+ label2 = new QLabel(codec);
+ edit1 = new Counter("0",this);
+ edit2 = new Counter("0",this);
+ calcbutton=new QPushButton("+1",this);
+ codec = QStringLiteral("Выход");
+ exitbutton=new QPushButton(codec);
+
+ QHBoxLayout *layout1 = new QHBoxLayout();
+ layout1->addWidget(label1);
+ layout1->addWidget(label2);
+ QHBoxLayout *layout2 = new QHBoxLayout();
+ layout2->addWidget(edit1);
+ layout2->addWidget(edit2);
+ QHBoxLayout *layout3 = new QHBoxLayout();
+ layout3->addWidget(calcbutton);
+ layout3->addWidget(exitbutton);
+ QVBoxLayout *layout4 = new QVBoxLayout(this);
+ layout4->addLayout(layout1);
+ layout4->addLayout(layout2);
+ layout4->addLayout(layout3);
+ // связь сигнала нажатия кнопки и слота закрытия окна
+ connect(calcbutton,SIGNAL(clicked(bool)),
+ edit1,SLOT(add_one()));
+ connect(edit1,SIGNAL(tick_signal()),
+ edit2,SLOT(add_one()));
+ connect(exitbutton,SIGNAL(clicked(bool)),
+ this,SLOT(close()));
+}

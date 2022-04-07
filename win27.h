@@ -1,9 +1,5 @@
 #ifndef WIN27_H
 #define WIN27_H
-#include <QPushButton>
-#include <QHBoxLayout>
-#include <QWidget>
-#include <QLabel>
 #include <QApplication>
 #include <QLineEdit>
 #include <QValidator>
