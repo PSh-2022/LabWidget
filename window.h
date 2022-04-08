@@ -2,12 +2,12 @@
 #define WINDOW_H
 #include <QPushButton>
 #include "area.h"
-class Window : public QWidget
+class Window : public QWidget// класс окна
 {
 protected:
  Area * area; // область отображения рисунка
- QPushButton * btn;
+ QPushButton * btn;// кнопка
 public:
- Window();
+ Window();// конструктор
 };
 #endif // WINDOW_H
