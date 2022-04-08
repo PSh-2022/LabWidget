@@ -3,10 +3,10 @@
 #include "window.h" //пример 2.9
 int main(int argc, char *argv[])
 {
-QApplication app(argc, argv);
-//Win win(0);//пример 2.7
-//Win1 win(0);//пример 2.8
-Window win;//пример 2.9
-win.show();
-return app.exec();
+QApplication app(argc, argv); // создание объекта-приложения
+//Win win(0);//пример 2.7// создание объекта управления окном
+//Win1 win(0);//пример 2.8// создание объекта управления окном
+Window win;//пример 2.9// создание объекта управления окном
+win.show();// визуализация окна win
+return app.exec();// запуск цикла обработки сообщений приложения
 }

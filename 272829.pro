@@ -1,5 +1,5 @@
-QT += gui
-QT += widgets
+QT += gui# используемые средства Qt: графический интерфейс
+QT += widgets# используемые средства Qt: виджеты
 
 
 CONFIG += c++11 console

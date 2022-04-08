@@ -1,4 +1,4 @@
-#include "win27.h"//39
+#include "win27.h"
 #include <QPushButton>
 #include <QLabel>
 #include <QVBoxLayout>
@@ -45,38 +45,38 @@ Win::Win(QWidget *parent):QWidget(parent)
 }
 void Win::begin()// метод начальной настройки интерфейса
 {
- inputEdit->clear();
- nextButton->setEnabled(false);
- nextButton->setDefault(false);
- inputEdit->setEnabled(true);
- outputLabel->setVisible(false);
- outputEdit->setVisible(false);
- outputEdit->setEnabled(false);
- inputEdit->setFocus();
+ inputEdit->clear();//очищает
+ nextButton->setEnabled(false);//изменение свойства способности принимать и обрабатывать сообщения от клавиатуры и мыши: не способно
+ nextButton->setDefault(false);//устанавливает значение кнопки по умолчанию: false
+ inputEdit->setEnabled(true);//изменение свойства способности принимать и обрабатывать сообщения от клавиатуры и мыши: способно
+ outputLabel->setVisible(false);//видимость виджета и, соответственно, всех его подчиненных виджетов изменение на false
+ outputEdit->setVisible(false);//видимость виджета и, соответственно, всех его подчиненных виджетов изменение на false
+ outputEdit->setEnabled(false);//изменение свойства способности принимать и обрабатывать сообщения от клавиатуры и мыши: не способно
+ inputEdit->setFocus();//ставит фокус ввода с клавиатуры на виджет inputEdit
 }
 void Win::calc()// метод реализации вычислений
 {
  bool Ok=true; float r,a;
- QString str=inputEdit->text();
- a=str.toDouble(&Ok);
- if (Ok)
+ QString str=inputEdit->text();//передает значение из inputEdit
+ a=str.toDouble(&Ok);//конвертирует в Double
+ if (Ok)//если сконвертировал
  {
- r=a*a;
- str.setNum(r);
- outputEdit->setText(str);
- inputEdit->setEnabled(false);
- outputLabel->setVisible(true);
- outputEdit->setVisible(true);
- nextButton->setDefault(true);
- nextButton->setEnabled(true);
- nextButton->setFocus();
+ r=a*a;//возводим в квадрат
+ str.setNum(r);//Задает для строки напечатанное значение r и возвращает ссылку на строку
+ outputEdit->setText(str);//передает значение из outputEdit
+ inputEdit->setEnabled(false);//изменение свойства способности принимать и обрабатывать сообщения от клавиатуры и мыши: не способно
+ outputLabel->setVisible(true);//видимость виджета и, соответственно, всех его подчиненных виджетов изменение на true
+ outputEdit->setVisible(true);//видимость виджета и, соответственно, всех его подчиненных виджетов изменение на true
+ nextButton->setDefault(true);//устанавливает значение кнопки по умолчанию: false
+ nextButton->setEnabled(true);//изменение свойства способности принимать и обрабатывать сообщения от клавиатуры и мыши: способно
+ nextButton->setFocus();//ставит фокус ввода с клавиатуры на виджет nextButton
  }
  else
- if (!str.isEmpty())
+ if (!str.isEmpty())//если строка пуста
  {
  auto codec = QStringLiteral("Возведение в квадрат.");
  auto codec1 = QStringLiteral("Введено неверное значение.");
- QMessageBox msgBox(QMessageBox::Information, codec, codec1, QMessageBox::Ok);
+ QMessageBox msgBox(QMessageBox::Information, codec, codec1, QMessageBox::Ok);//отображает ошибку
  msgBox.exec();
  }
 }
